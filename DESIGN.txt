@@ -1,0 +1,106 @@
+Miro Haapalainen
+Project 1, CSC-203-07 Kazerouni
+
+Refactored functions/variables:
+
+Entity.java:
+
+    -All static final variables which pertain to the functions of the entity class
+
+    -All static creator methods of entities - I kept these static because they are
+    essentially just a neater use of the entity constructor. Moved to entity class
+    because they create instances of it.
+
+    -nextImage() - This method increments an instance variable of the entity class,
+    which is where it belongs.
+
+    -getAnimationPeriod() - A getter method for an instance variable of entity class;
+    moved there.
+
+    -NextPosition methods - These were a bit of a toss-up between the entity and
+    worldmodel classes, but I decided on entity since they return the next position
+    specifically pertaining to the entity in question.
+
+    -Transform methods - Since these methods handles an action taken by an entity object,
+    I moved them to that class.
+
+    -MoveTo methods - Same reasoning as transform methods.
+
+    -Execute Activity methods - Same reasoning as above; activity execution methods
+    should be located in the class responsible for executing them.
+
+    -scheduleActions() - This was another difficult one to decide on, but because
+    it calls the event scheduler to schedule an action that an entity can take, I
+    decided that the entity class should be the one responsible for creating new
+    actions and calling the scheduler to schedule them.
+
+    -getCurrentImage() - The original static method had a check for the type of the
+    object being passed in, so I split this method into two separate ones - one in the entity
+    class and one in the background class to make this sort of check unnecessary.
+
+WorldModel.java:
+
+    -All parse methods - The WorldModel class is responsible for keeping track
+    of and thereby parsing the entities within the world, as per the class
+    specification.
+
+    -All methods concerning the adding, removing, moving of entities - Same reasoning
+    as above. It is the WorldModel class' job to keep track of the entities within it.
+
+    -All getter methods for a given position on the world (entities, background, etc.) -
+    Same reasoning as above.
+
+    -Load and save functions - Made the most sense to me for the WorldModel class
+    to maintain load and save functionality since it already keeps track of everything
+    within the world, i.e. the things it would need to save.
+
+Action.java:
+
+    -Static action create methods - Remained static and moved to action class since
+    they are just a neater shortcut to the action constructor in practice.
+
+    -Execute action methods - The action class should be in charge of executing action
+    instances.
+
+Point.java:
+
+    -Adjacent() - This made more sense to put as a non-static instance method
+    rather than a static method with two parameters.
+
+    -DistanceSquared() - Same reasoning as above; just handles comparisons of two
+    points essentially
+
+    -nearestEntity() - Parses entities nearest to a given point, so this is why
+    I put this in the point class.
+
+WorldView.java:
+
+    -shiftView(), drawBackground(), drawEntities(), drawViewport() - these didn't
+    really make any sense to put anywhere else, since they work the most closely with
+    the functionality of the WorldView class and exclusively call it as a parameter.
+
+Viewport.java:
+
+    -viewportToWorld(), worldToViewport(), shift() - These obviously contained functionality
+    of the viewport class (called Viewport object as sole non-primitive parameter) and
+    so made more sense to put there as instance methods.
+
+EventScheduler():
+
+    -scheduleEvent(), unscheduleAllEvents(), removePendingEvent(), updateOnTime():
+    These methods are concerned with the scheduling of called tasks and events and thus
+    carry out the sole functionality of this class.
+
+ImageStore():
+    -loadImages() - Carries out functionality of ImageStore class => should be located here
+
+    -Static methods processImageLine(), getImages(), setAlpha() - I left these static and moved
+    them to ImageStore because they handle image operations but don't deal with any instances of the
+    class.
+
+Non-refactored methods:
+
+    -getNumFromRange(), getIntFromRange, clamp() - I left these static and in the functions class
+    because they don't have any obvious relation to any class in particular; they appear to simply be
+    methods to make mathematical operations more convenient throughout the project.
+
