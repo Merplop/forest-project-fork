@@ -7,11 +7,11 @@ import java.util.Optional;
 import processing.core.PImage;
 public interface Entity {
 
-    public static final int PROPERTY_KEY = 0;
-    public static final int PROPERTY_ID = 1;
-    public static final int PROPERTY_COL = 2;
-    public static final int PROPERTY_ROW = 3;
-    public static final int ENTITY_NUM_PROPERTIES = 4;
+    int PROPERTY_KEY = 0;
+    int PROPERTY_ID = 1;
+    int PROPERTY_COL = 2;
+    int PROPERTY_ROW = 3;
+    int ENTITY_NUM_PROPERTIES = 4;
 
     void nextImage();
     Point getPosition();

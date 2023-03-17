@@ -18,7 +18,7 @@ interface PathingStrategy
                             BiPredicate<Point, Point> withinReach,
                             Function<Point, Stream<Point>> potentialNeighbors);
 
-    static final Function<Point, Stream<Point>> CARDINAL_NEIGHBORS =
+    Function<Point, Stream<Point>> CARDINAL_NEIGHBORS =
             point ->
                     Stream.<Point>builder()
                             .add(new Point(point.x, point.y - 1))

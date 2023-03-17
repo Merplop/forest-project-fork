@@ -8,11 +8,11 @@ import processing.core.PImage;
 
 public abstract class Plant implements Transformable, Active, Animated {
 
-    private String id;
+    private final String id;
     private Point position;
-    private List<PImage> images;
+    private final List<PImage> images;
     private int health;
-    private int healthLimit;
+    private final int healthLimit;
     private int imageIndex;
 
     private final double actionPeriod;

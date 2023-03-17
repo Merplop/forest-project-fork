@@ -16,7 +16,7 @@ public abstract class Dude extends Moveable implements Transformable, Animated {
 
     private int resourceLimit;
     private int resourceCount;
-    private double animationPeriod;
+    private final double animationPeriod;
 
     public Dude(String id, Point position, double actionPeriod, double animationPeriod, int resourceLimit, List<PImage> images) {
         super(id, position, images, actionPeriod);

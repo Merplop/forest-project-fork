@@ -10,7 +10,7 @@ public class Fairy extends Moveable implements Animated {
     public static final int FAIRY_ANIMATION_PERIOD = 0;
     public static final int FAIRY_ACTION_PERIOD = 1;
     public static final int FAIRY_NUM_PROPERTIES = 2;
-    private double animationPeriod;
+    private final double animationPeriod;
 
 
     public Fairy(String id, Point position, double actionPeriod, double animationPeriod, List<PImage> images) {

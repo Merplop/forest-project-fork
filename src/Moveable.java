@@ -8,11 +8,11 @@ import processing.core.PImage;
 
 public abstract class Moveable implements Active {
 
-    private String id;
+    private final String id;
     private Point position;
-    private double actionPeriod;
+    private final double actionPeriod;
     private int imageIndex;
-    private List<PImage> images;
+    private final List<PImage> images;
     public PathingStrategy pathingStrategy;
     public List<Point> path;
 
@@ -51,7 +51,7 @@ public abstract class Moveable implements Active {
                         this.getPosition(),
                         target.getPosition(),
                         p -> !world.isOccupied(p) && world.withinBounds(p),
-                        (p1, p2) -> p1.adjacent(p2),
+                        Point::adjacent,
                         PathingStrategy.CARDINAL_NEIGHBORS
                 );
             }

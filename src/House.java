@@ -5,9 +5,9 @@ import java.util.List;
 public class House implements Entity {
     public static final String HOUSE_KEY = "house";
     public static final int HOUSE_NUM_PROPERTIES = 0;
-    private String id;
+    private final String id;
     private Point position;
-    private List<PImage> images;
+    private final List<PImage> images;
 
     private int imageIndex;
 

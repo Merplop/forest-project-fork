@@ -1,9 +1,9 @@
 public abstract class Action {
 
-    private Entity entity;
-    private WorldModel world;
-    private ImageStore imageStore;
-    private int repeatCount;
+    private final Entity entity;
+    private final WorldModel world;
+    private final ImageStore imageStore;
+    private final int repeatCount;
 
     public Action(Entity entity, WorldModel world, ImageStore imageStore, int repeatCount) {
         this.entity = entity;

@@ -8,11 +8,11 @@ public class Obstacle implements Animated {
     public static final int OBSTACLE_ANIMATION_PERIOD = 0;
     public static final int OBSTACLE_NUM_PROPERTIES = 1;
 
-    private double animationPeriod;
+    private final double animationPeriod;
     private Point position;
-    private String id;
+    private final String id;
 
-    private List<PImage> images;
+    private final List<PImage> images;
     private int imageIndex;
 
     public Obstacle(String id, Point position, double animationPeriod, List<PImage> images) {

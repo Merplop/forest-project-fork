@@ -5,9 +5,9 @@ import java.util.List;
 public class Stump implements Entity {
     public static final String STUMP_KEY = "stump";
     public static final int STUMP_NUM_PROPERTIES = 0;
-    private String id;
+    private final String id;
     private Point position;
-    private List<PImage> images;
+    private final List<PImage> images;
     private int imageIndex;
 
     public Stump(String id, Point position, List<PImage> images) {
