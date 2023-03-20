@@ -3,6 +3,7 @@ import processing.core.PImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class Lorax extends Fairy {
 
@@ -23,23 +24,30 @@ public class Lorax extends Fairy {
             return;
         }
 
+        // Makes the grass greener
+        // Kinda looks janky because it only targets grass.png but oh well
+        Stream.concat(
+                PathingStrategy.CARDINAL_NEIGHBORS.apply(getPosition()),
+                Stream.of(this.getPosition())
+        )
+        .filter(world::withinBounds)
+        .filter(p -> world.getBackgroundCell(p).id.equals("grass"))
+        .forEach(p -> {
+            world.setBackgroundCell(p, new Background("grass_greener", imageStore.getImageList("grass_greener")));
+        });
+
         // Visits every cardinal tree and turns it into a rainbow tree
         PathingStrategy.CARDINAL_NEIGHBORS.apply(getPosition())
+        .filter(world::withinBounds)
         .map(world::getOccupancyCell)
         .filter(ent -> ent != null && ent.getClass() == Tree.class)
         .forEach(tree -> {
             ((Tree) tree).setImageSet(imageStore.getImageList("rainbow_tree"));
         });
 
-//        // Visits every cardinal background tile and makes the grass greener
-//        PathingStrategy.CARDINAL_NEIGHBORS.apply(getPosition())
-//        .forEach(p -> {
-//
-//        });
 
         Point tgtPos = loraxTarget.get().getPosition();
 
-        // TODO This can and will index out of bounds
         Point behind = new Point(this.getPosition().x-1, this.getPosition().y);
 
         if (!world.isOccupied(behind) && Math.random() <= 0.1) { // random 1/10 chance to spawn sapling in adjacent tile
