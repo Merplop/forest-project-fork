@@ -30,6 +30,9 @@ public final class VirtualWorld extends PApplet {
     public static final double FASTER_SCALE = 0.25;
     public static final double FASTEST_SCALE = 0.10;
 
+    public boolean hasLorax = false;
+    public Lorax lorax;
+
     public String loadFile = "world.sav";
     public long startTimeMillis = 0;
     public double timeScale = 1.0;
@@ -82,7 +85,18 @@ public final class VirtualWorld extends PApplet {
             } else {
                 System.out.println(entity.getId() + ": " + entity.getClass() + " : " + 0);
             }
-
+        } else {
+            if (!hasLorax) {
+                System.out.println("Lorax has been summoned to speak for the trees.");
+                this.lorax = Lorax.createLorax("lorax", pressed, Lorax.LORAX_ACTION_PERIOD, Lorax.LORAX_ANIMATION_PERIOD, this.imageStore.getImageList(Lorax.LORAX_KEY));
+                this.world.addEntity(this.lorax);
+                this.lorax.scheduleActions(scheduler, world, imageStore);
+                hasLorax = true; } else {
+                    System.out.println("Dude has been spawned.");
+                    Dude dude = DudeNotFull.createDudeNotFull("", pressed, 1, 1, 2, this.imageStore.getImageList(Dude.DUDE_KEY));
+                    world.addEntity(dude);
+                    dude.scheduleActions(scheduler, world, imageStore);
+            }
         }
 
     }

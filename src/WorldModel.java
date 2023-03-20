@@ -249,6 +249,7 @@ public final class WorldModel {
                 case Tree.TREE_KEY -> parseTree(properties, pt, id, imageStore);
                 case Sapling.SAPLING_KEY -> parseSapling(properties, pt, id, imageStore);
                 case Stump.STUMP_KEY -> parseStump(properties, pt, id, imageStore);
+                case Lorax.LORAX_KEY -> parseFairy(properties, pt, id, imageStore);
                 default -> throw new IllegalArgumentException("Entity key is unknown");
             }
         }else{
