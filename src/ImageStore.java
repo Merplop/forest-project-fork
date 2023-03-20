@@ -4,6 +4,7 @@ import processing.core.PImage;
 import java.util.*;
 
 public final class ImageStore {
+
     public Map<String, List<PImage>> images;
     public List<PImage> defaultImages;
 

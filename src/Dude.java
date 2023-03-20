@@ -1,12 +1,8 @@
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 import processing.core.PImage;
 
-public abstract class Dude extends Moveable implements Transformable, Animated {
+public abstract class Dude extends Movable implements Transformable, Animated {
 
     public static final String DUDE_KEY = "dude";
     public static final int DUDE_ACTION_PERIOD = 0;

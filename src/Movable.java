@@ -1,12 +1,8 @@
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 import processing.core.PImage;
 
-public abstract class Moveable implements Active {
+public abstract class Movable implements Active {
 
     private final String id;
     private Point position;
@@ -16,7 +12,7 @@ public abstract class Moveable implements Active {
     public PathingStrategy pathingStrategy;
     public List<Point> path;
 
-    public Moveable(String id, Point position, List<PImage> images, double actionPeriod) {
+    public Movable(String id, Point position, List<PImage> images, double actionPeriod) {
         this.id = id;
         this.position = position;
         this.images = images;

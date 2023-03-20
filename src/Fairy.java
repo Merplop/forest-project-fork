@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Fairy extends Moveable implements Animated {
+public class Fairy extends Movable implements Animated {
 
     public static final String FAIRY_KEY = "fairy";
     public static final int FAIRY_ANIMATION_PERIOD = 0;

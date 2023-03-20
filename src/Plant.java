@@ -6,11 +6,11 @@ import java.util.Optional;
 
 import processing.core.PImage;
 
-public abstract class Plant implements Transformable, Active, Animated {
+public abstract class Plant implements Transformable, Animated {
 
     private final String id;
     private Point position;
-    private final List<PImage> images;
+    private List<PImage> images;
     private int health;
     private final int healthLimit;
     private int imageIndex;
@@ -71,6 +71,10 @@ public abstract class Plant implements Transformable, Active, Animated {
     @Override
     public PImage getCurrentImage() {
         return this.images.get(this.imageIndex % this.images.size());
+    }
+
+    public void setImageSet(List<PImage> images) {
+        this.images = images;
     }
     @Override
     public String log(){
