@@ -1,0 +1,14 @@
+To trigger the event, click on an unoccupied tile on the grid, which will spawn a Lorax entity into that tile.
+As the Lorax walks around, he:
+    a. Makes the surrounding grass greener
+    b. Turns surrounding trees into rainbow trees
+    c. Turns surrounding fairies into blue 'hyper fairies,' which move around the world faster
+His walking patterns target dudes; once he reaches a dude, he plays an audio voice line and kills the dude, leaving
+behind a skull.
+
+We wouldn't say that we ran into any particularly glaring issues during this project, since the inheritance tree
+for Entity made implementing the Lorax's functionality pretty easy (we simply made him a subclass of fairy, targetting
+dudes rather than stumps).
+
+Gavin - Implemented greener grass, rainbow trees, hyper fairies functionality
+Miro - Lorax sprite/base code, event trigger, dude spawning, parts of Lorax's executeActivity
