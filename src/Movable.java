@@ -6,9 +6,9 @@ public abstract class Movable implements Active {
 
     private final String id;
     private Point position;
-    private final double actionPeriod;
+    private double actionPeriod;
     private int imageIndex;
-    private final List<PImage> images;
+    List<PImage> images;
     public PathingStrategy pathingStrategy;
     public List<Point> path;
 
@@ -27,6 +27,10 @@ public abstract class Movable implements Active {
     }
 
     public void setPosition(Point position) {this.position = position;}
+
+    public void setActionPeriod(double actionPeriod) {
+        this.actionPeriod = actionPeriod;
+    }
 
     @Override
     public double getActionPeriod() {

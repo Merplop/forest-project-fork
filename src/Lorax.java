@@ -40,15 +40,21 @@ public class Lorax extends Fairy {
         PathingStrategy.CARDINAL_NEIGHBORS.apply(getPosition())
         .filter(world::withinBounds)
         .map(world::getOccupancyCell)
-        .filter(ent -> ent != null && ent.getClass() == Tree.class)
-        .forEach(tree -> {
-            ((Tree) tree).setImageSet(imageStore.getImageList("rainbow_tree"));
+        .filter(ent -> ent != null)
+        .forEach(ent -> {
+            if (ent instanceof Tree tree){
+                tree.setImageSet(imageStore.getImageList("rainbow_tree"));
+            }
+            else if (ent instanceof Fairy fairy) {
+                fairy.setImageSet(imageStore.getImageList("fairy_hyper"));
+                fairy.setActionPeriod(0.15);
+            }
         });
+
 
 
         Point tgtPos = loraxTarget.get().getPosition();
 
-        // TODO Figure out whether or not this can shoot out of bounds
         Point behind = new Point(this.getPosition().x-1, this.getPosition().y);
 
         if (!world.isOccupied(behind) && Math.random() <= 0.1) { // random 1/10 chance to spawn sapling in adjacent tile

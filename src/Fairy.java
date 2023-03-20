@@ -8,7 +8,7 @@ public class Fairy extends Movable implements Animated {
 
     public static final String FAIRY_KEY = "fairy";
     public static final int FAIRY_ANIMATION_PERIOD = 0;
-    public static final int FAIRY_ACTION_PERIOD = 1;
+    public static int FAIRY_ACTION_PERIOD = 1;
     public static final int FAIRY_NUM_PROPERTIES = 2;
     private final double animationPeriod;
 
@@ -76,5 +76,8 @@ public class Fairy extends Movable implements Animated {
     public double getAnimationPeriod() {
         return this.animationPeriod;
     }
+
+    public void setImageSet(List<PImage> images) { super.images = images; }
+
 
 }
