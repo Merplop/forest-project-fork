@@ -48,6 +48,7 @@ public class Lorax extends Fairy {
 
         Point tgtPos = loraxTarget.get().getPosition();
 
+        // TODO Figure out whether or not this can shoot out of bounds
         Point behind = new Point(this.getPosition().x-1, this.getPosition().y);
 
         if (!world.isOccupied(behind) && Math.random() <= 0.1) { // random 1/10 chance to spawn sapling in adjacent tile
@@ -61,6 +62,8 @@ public class Lorax extends Fairy {
             Player loraxPlayer = new Player("loraxLine.wav");
             Thread sound = new Thread(loraxPlayer);
             sound.start();
+
+            world.addEntity(new Skull(Skull.SKULL_KEY, tgtPos, imageStore.getImageList(Skull.SKULL_KEY)));
         }
 
         scheduler.scheduleEvent(this, ActivityAction.createActivityAction(this, world, imageStore), this.getActionPeriod());

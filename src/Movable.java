@@ -40,30 +40,29 @@ public abstract class Movable implements Active {
     public boolean moveTo(WorldModel world, Entity target, EventScheduler scheduler) {
         if (this.getPosition().adjacent(target.getPosition())) {
             return true;
-        } else {
-            // check if there is a path
-            if (this.path == null || this.path.isEmpty()) {
-                this.path = this.pathingStrategy.computePath(
-                        this.getPosition(),
-                        target.getPosition(),
-                        p -> !world.isOccupied(p) && world.withinBounds(p),
-                        Point::adjacent,
-                        PathingStrategy.CARDINAL_NEIGHBORS
-                );
-            }
-
-            // follow the path
-            if (!this.path.isEmpty()) {
-                Point nextPos = this.path.remove(0);
-                if (!world.isOccupied(nextPos)) {
-                    world.moveEntity(scheduler, this, nextPos);
-                }
-         //       return false;
-            } //else {
-                // no path found, stop moving
-            return false;
-            //}
         }
+
+        // check if there is a path
+        if (this.path == null || this.path.isEmpty()) {
+            this.path = this.pathingStrategy.computePath(
+                    this.getPosition(),
+                    target.getPosition(),
+                    p -> !world.isOccupied(p) && world.withinBounds(p),
+                    Point::adjacent,
+                    PathingStrategy.CARDINAL_NEIGHBORS
+            );
+        }
+
+        // follow the path
+        if (!this.path.isEmpty()) {
+            Point nextPos = this.path.remove(0);
+            if (!world.isOccupied(nextPos)) {
+                world.moveEntity(scheduler, this, nextPos);
+            }
+        }
+
+        // no path found, stop moving
+        return false;
     }
 
     public String getId() {
